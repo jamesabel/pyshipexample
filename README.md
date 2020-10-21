@@ -1,8 +1,5 @@
-# pyshipexample
 
-pyship example program
-
-Learn how to use pyship by using pyshipexample
+# Learn how to use pyship by using pyshipexample
 
 ---
 
