@@ -130,3 +130,7 @@ dmypy.json
 
 # jca
 .idea/
+app/
+installers/
+make_launcher.bat
+*.nsi
