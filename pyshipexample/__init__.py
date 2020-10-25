@@ -1,4 +1,4 @@
-""" pyship_example """
+""" pyshipexample """
 
 from .main import main
 

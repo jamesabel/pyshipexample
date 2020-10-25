@@ -1,3 +1,3 @@
 
-__application_name__ = "pyship_example"
+__application_name__ = "pyshipexample"
 __version__ = "0.0.1"
