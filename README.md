@@ -60,7 +60,7 @@ is_gui = true
 
 ## 4) Run pyship
 
-Obviously this is pyship specific.  Run:
+Run:
 
 ```
 python -m pyship
@@ -74,8 +74,10 @@ installers
 ```
 
 If you're using AWS, the installer (e.g. `pyshipexample_installer_win64.exe`) and the `clip` file will be uploaded to S3. You can 
-merely point your users to the installer in S3 and they can download the installer from there (either make the bucket
+point your users to the installer in S3 and they can download the installer from there (either make the bucket
 public or manage permissions via AWS's IAM). The `clip` file is used for updating (more on this later).
+
+Running `pyship` typically takes a few minutes.
 
 Once the installer is run, an executable will be placed in the application location for the particular OS.  Example:
 
