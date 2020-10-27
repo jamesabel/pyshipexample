@@ -14,11 +14,11 @@ pyship's major features
 Use this `pyshipexample` program to learn how to use pyship. This example already has all the files necessary to create a 
 stand-alone application. The directions below show you how to use pyship from scratch. 
 
-## 1) Create your Python application
+## 1) Make your Python application runnable as a "main module"
 
-Create a your Python program as "run the module as an application" (e.g. you can run your application as `python -m <module>`). 
-Note that there is nothing about this step that is particularly special about pyship.  See 
-[execute as main module](https://docs.python.org/3/using/cmdline.html#cmdoption-m) for details.
+Create a your Python program so that it can [execute as main module](https://docs.python.org/3/using/cmdline.html#cmdoption-m),
+e.g. you can run your application as `python -m <module>`.  Note that there is nothing about this step that is particularly 
+special about pyship.
 
 * Unless your application is extremely simple, your application should be organized in a separate directory (since it's a package) 
 and contain an `__init__.py` and `__main__.py` files.
