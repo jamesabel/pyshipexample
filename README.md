@@ -38,7 +38,7 @@ When this is complete, you can run your application `python -m pyshipexample`. S
 ## 2) Package your application up as a distribution
 
 Package your application up as a distribution using whatever tool you like (e.g. `flit`, `setup.py`, etc.). The result should be a 
-distribution (e.g. a wheel), typically in the `dist` directory.
+distribution (e.g. a wheel), typically in the `dist` directory.  This part is also general and not specific to PyShip.
 
 The pyshipexample distribution was created with flit, therefore `pyproject.toml` has several sections and key/value pairs already filled in.
 
