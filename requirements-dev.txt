@@ -1,4 +1,3 @@
 ismain
 pyship
-pyqt5
 flit
