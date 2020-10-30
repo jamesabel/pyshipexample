@@ -39,6 +39,8 @@ class Window(Frame):
         self.update_button = Button(self, text="Update Application", command=self.update_application)
         self.update_button.pack()
 
+        self.master.focus_force()
+
         self.get_versions()
 
     def get_versions(self):
