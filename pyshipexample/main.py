@@ -4,7 +4,7 @@ from tkinter import Tk, BOTH, Button, Frame, Label, StringVar
 
 from pyshipupdate import UpdaterAwsS3, restart_return_code
 
-from pyshipexample import __application_name__
+from pyshipexample import __application_name__, __author__
 from pyshipexample import __version__ as current_version
 
 
@@ -42,14 +42,14 @@ class Window(Frame):
         self.get_versions()
 
     def get_versions(self):
-        updater = UpdaterAwsS3(__application_name__)
+        updater = UpdaterAwsS3(__application_name__, __author__)
         available_versions = updater.get_available_versions()
         greatest_version = updater.get_greatest_version()
         self.available_versions_value.set(f"available_versions={','.join([str(v) for v in available_versions])}")
         self.greatest_version_value.set(f"greatest_version={str(greatest_version)}")
 
     def update_application(self):
-        updater = UpdaterAwsS3(__application_name__)
+        updater = UpdaterAwsS3(__application_name__, __author__)
         updater.update(current_version)
         sys.exit(restart_return_code)  # tell the launcher we want to be restarted
 
