@@ -85,9 +85,20 @@ Once the installer is run, an executable will be placed in the application locat
 
 ## 5) Updating
 
-If desired, your application can self-update.
+If desired, your application can self-update.  When you run pyship, in addition to creating an installer, pyship places 
+a versioned clip file in AWS.  If this is more recent than what is current running in your application, this file will 
+be downloaded when you do an update.
 
-< fill this in once updating is added to the example app >
+In your application code, use the `pyshipupdate.UpdaterAwsS3` class to do the update. From pyshipexample:
+
+```
+updater = UpdaterAwsS3(__application_name__, __author__)
+updater.update(current_version)
+```
+
+This will look in AWS S3 to see if there is a more recent version than you're currently running, and if there is it will 
+download it.  Once `update()` is complete, your application should do a `sys.exit(pyshipupdate.restart_return_code)`. This 
+tells the launcher to restart your application, and when your application is restarted it will use the new version. 
 
 # pyship Architecture Basics
 
