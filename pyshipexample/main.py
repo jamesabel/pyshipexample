@@ -1,11 +1,29 @@
 import sys
+from threading import Thread, Event
 
-from tkinter import Tk, BOTH, Button, Frame, Label, StringVar
+from mttkinter.mtTkinter import Tk, BOTH, Button, Frame, Label, StringVar
 
-from pyshipupdate import UpdaterAwsS3, restart_return_code
+from pyshipupdate import UpdaterAwsS3, restart_return_code, ok_return_code
 
 from pyshipexample import __application_name__, __author__
 from pyshipexample import __version__ as current_version
+
+exit_event = Event()
+
+return_code = ok_return_code
+
+
+class UpdateApplication(Thread):
+    def __init__(self, window):
+        self.window = window
+        super().__init__()
+
+    def run(self):
+        global return_code
+        updater = UpdaterAwsS3(__application_name__, __author__)
+        updater.update(current_version)
+        return_code = restart_return_code
+        self.window.master.quit()  # exit the application
 
 
 class Window(Frame):
@@ -19,9 +37,6 @@ class Window(Frame):
 
         # allowing the widget to take the full space of the root window
         self.pack(fill=BOTH, expand=1)
-
-        get_versions_button = Button(self, text="Refresh Versions", command=self.get_versions)
-        get_versions_button.pack()
 
         self.current_version_label = Label(self, text=f"current_version={current_version}")
         self.current_version_label.pack()
@@ -39,9 +54,17 @@ class Window(Frame):
         self.update_button = Button(self, text="Update Application", command=self.update_application)
         self.update_button.pack()
 
+        Label(self).pack()  # space
+
+        self.status_value = StringVar()
+        self.status_value_label = Label(self, textvariable=self.status_value)
+        self.status_value_label.pack()
+
         self.master.focus_force()
 
         self.get_versions()
+
+        self.update_application = None
 
     def get_versions(self):
         updater = UpdaterAwsS3(__application_name__, __author__)
@@ -51,9 +74,10 @@ class Window(Frame):
         self.greatest_version_value.set(f"greatest_version={str(greatest_version)}")
 
     def update_application(self):
-        updater = UpdaterAwsS3(__application_name__, __author__)
-        updater.update(current_version)
-        sys.exit(restart_return_code)  # tell the launcher we want to be restarted
+        if self.update_application is None or not self.update_application.is_alive():
+            self.status_value.set("Updating ...")
+            self.update_application = UpdateApplication(self)
+            self.update_application.start()
 
 
 def main():
@@ -68,3 +92,5 @@ def main():
 
     Window(root)
     root.mainloop()
+
+    sys.exit(return_code)  # tell the launcher we want to be restarted

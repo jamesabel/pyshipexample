@@ -12,7 +12,7 @@ author-email = "j@abel.co"
 home-page = "https://github.com/jamesabel/pyshipexample"
 classifiers = ["License :: OSI Approved :: MIT License"]
 requires = [
-    "ismain", "pyshipupdate"
+    "ismain", "mttkinter", "pyshipupdate"
 ]
 
 [tool.pyship]
