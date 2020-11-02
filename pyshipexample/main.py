@@ -32,10 +32,7 @@ class Window(Frame):
         Frame.__init__(self, master)
         self.master = master
 
-        # changing the title of our master widget
         self.master.title(__application_name__)
-
-        # allowing the widget to take the full space of the root window
         self.pack(fill=BOTH, expand=1)
 
         self.current_version_label = Label(self, text=f"current_version={current_version}")
